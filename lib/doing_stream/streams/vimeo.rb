@@ -13,11 +13,9 @@ module DoingStream
   class Streams::Vimeo::Likes < Stream::JSONStream
     URI = 'http://vimeo.com/api/v2/<%= user %>/likes.json'
 
-    def name; 'vimeo'; end
-
     class Entry < Stream::Entry
       def published
-        Time.new data['liked_on']
+        Time.parse data['liked_on']
       end
     end
   end
@@ -25,11 +23,9 @@ module DoingStream
   class Streams::Vimeo::Videos < Stream::JSONStream
     URI = 'http://vimeo.com/api/v2/<%= user %>/videos.json'
 
-    def name; 'vimeo'; end
-
     class Entry < Stream::Entry
       def published
-        Time.new data['upload_date']
+        Time.parse data['upload_date']
       end
     end
   end

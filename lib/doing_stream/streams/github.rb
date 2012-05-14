@@ -8,7 +8,7 @@ module DoingStream
 
     class Entry < Stream::Entry
       def published
-        Time.new data['created_at']
+        Time.parse data['created_at']
       end
     end
   end
