@@ -9,10 +9,10 @@ class DoingStream::DoingStream
     @streams = streams
   end
 
-  def latest n = 5
+  def latest n = 5, m = 2
     streams.map do |stream|
-      stream.entries.take(2)
-    end.flatten.sort_by(&:published).reverse.take(5)
+      stream.entries.take((m.respond_to? :call) ? m.call(stream) : m)
+    end.flatten.sort_by(&:published).reverse.take(n)
   end
 
   def entries
