@@ -6,7 +6,13 @@ module DoingStream
     end
 
     def entries
-      @entries ||= (@likes.entries + @videos.entries).sort_by(&:published).reverse
+      @entries ||= begin
+                     (@likes.entries + @videos.entries).sort_by(&:published).reverse.each do |entry|
+                       class << entry; alias_method :type, :name; end
+                       entry.define_singleton_method(:name) { "vimeo" }
+                       def entry.to_h; super.tap { |h| h['data']['type'] = type }; end
+                     end
+                   end
     end
   end
 
