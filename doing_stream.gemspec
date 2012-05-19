@@ -16,6 +16,6 @@ Gem::Specification.new do |gem|
   gem.version       = DoingStream::VERSION
 
   gem.add_dependency 'curb'
-  gem.add_dependency 'feedzirra'
+  gem.add_dependency 'feedzirra', '~> 0.1.3'
   gem.add_dependency 'json'
 end
