@@ -1,6 +1,13 @@
 module DoingStream
   class Streams::LastFM < Stream::JSONStream
-    URI = 'http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=<%= user %>&format=json&limit=5&api_key=b25b959554ed76058ac220b7b2e0a026'
+    URI = 'http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=<%= user %>&format=json&limit=5&api_key=<%= api_key %>'
+
+    attr_accessor :api_key
+
+    def initialize user, options = {}
+      super
+      @api_key = options[:api_key]
+    end
 
     def json
       super['recenttracks']['track']

@@ -3,10 +3,11 @@ require 'uri'
 
 module DoingStream::Stream
   class Stream
-    attr_accessor :entries, :uri
+    attr_accessor :entries, :user
 
-    def initialize user
-      @uri = ::URI.parse(ERB.new(self.class::URI).result(binding))
+    def initialize user, options = {}
+      @user = user
+      @options = options
     end
 
     def entry_class
@@ -19,6 +20,10 @@ module DoingStream::Stream
 
     def name
       self.class.to_s.split('::').last.downcase
+    end
+
+    def uri
+      ::URI.parse(ERB.new(self.class::URI).result(binding))
     end
   end
 end

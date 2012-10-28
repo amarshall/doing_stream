@@ -34,7 +34,7 @@ them to `DoingStream::DoingStream.new`:
 
     streams = []
     streams << DoingStream::Streams::GitHub.new('foobar')
-    streams << DoingStream::Streams::LastFM.new('foobar')
+    streams << DoingStream::Streams::LastFM.new('foobar', api_key: 'my_awesome_api_key')
     streams << DoingStream::Streams::Pinboard.new('foobar')
     streams << DoingStream::Streams::StackOverflow.new(42)
     streams << DoingStream::Streams::Vimeo.new('foobar')
